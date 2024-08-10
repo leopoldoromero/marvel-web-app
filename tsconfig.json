@@ -23,6 +23,8 @@
       "@components/*": ["components/*"],
       "@contexts/*": ["contexts/*"],
       "@styles/*": ["styles/*"],
+      "@utils/*": ["utils/*"],
+      "@modules/*": ["modules/*"],
       "@character/*": ["modules/character/*"],
       "@shared/*": ["modules/shared/*"]
     }

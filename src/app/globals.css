@@ -42,6 +42,14 @@
   --font-weight-default: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
+
+  /* GAP */
+
+  --gap-xs: 8px;
+  --gap-s: 10px;
+  --gap-m: 12px;
+  --gap-l: 16px;
+  --gap-xl: 24px;
 }
 
 * {

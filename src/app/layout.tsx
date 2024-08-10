@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "@styles/flex.css";
 import "@styles/spacing.css";
+import { CharacterContextProvider } from "@contexts/CharacterContext";
+import { FavoritesContextProvider } from "@contexts/FavoritesContext";
+import Header from "@components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +21,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body >{children}</body>
+      <body >
+      <CharacterContextProvider>
+          <FavoritesContextProvider>
+            <Header />
+              {children}
+          </FavoritesContextProvider>
+        </CharacterContextProvider>
+      </body>
     </html>
   );
 }
