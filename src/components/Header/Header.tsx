@@ -4,6 +4,7 @@ import './header.styles.css';
 import { HeartIcon } from '@components/Icons';
 import { useFavoritesContext } from '@contexts/FavoritesContext';
 import Logo from '@components/Logo';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
   const { favorites, addFavorite } = useFavoritesContext();
@@ -13,7 +14,9 @@ const Header: React.FC = () => {
         <Logo />
       </div>
       <div className='header__favorites'>
-        <HeartIcon isSelected onClick={() => addFavorite(1)} />
+        <Link href='/favorites' data-testid='favorites_link_test_id'>
+          <HeartIcon isSelected />    
+        </Link>
         <span className='favorites-count'>{favorites.length}</span>
       </div>
     </header>

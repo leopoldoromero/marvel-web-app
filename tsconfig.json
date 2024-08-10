@@ -24,6 +24,7 @@
       "@contexts/*": ["contexts/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"],
       "@modules/*": ["modules/*"],
       "@character/*": ["modules/character/*"],
       "@shared/*": ["modules/shared/*"]

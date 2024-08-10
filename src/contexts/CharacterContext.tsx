@@ -22,7 +22,6 @@ export function CharacterContextProvider({ children }: { children: React.ReactNo
   const [searchParam, setSearchParam] = useState('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  console.log('FINDER::', charactersFinder)
   function getCharacters(nameStartsWith?: string, page?: number, perPage?: number) {
     setIsLoading(true);
       charactersFinder.execute(nameStartsWith, page, perPage).then((items) => {
@@ -31,9 +30,9 @@ export function CharacterContextProvider({ children }: { children: React.ReactNo
       })
   }
 
-  useEffect(() => {
-    getCharacters(searchParam);
-  }, [searchParam]);
+  // useEffect(() => {
+  //   getCharacters(searchParam);
+  // }, [searchParam]);
 
   return (
     <CharacterContext.Provider value={{ characters, isLoading, getCharacters, setSearchParam }}>

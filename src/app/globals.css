@@ -6,7 +6,8 @@
 
   /* Font Sizes */
 
-  --font-size-xs: 12px;
+  --font-size-mini: 12px;
+  --font-size-xs: 14px;
   --font-size-s: 16px;
   --font-size-m: 24px;
   --font-size-l: 32px;
@@ -17,7 +18,8 @@
   --font-familly-default: Roboto Condensed;
    
   /* Line Heights */
-  --line-height-xs: 14.06px;
+  --line-height-mini: 14.06px;
+  --line-height-xs: 16.41px;
   --line-height-s: 18.75px
   --line-height-m: 28.13px;
   --line-height-l: 37.5px;
@@ -43,7 +45,7 @@
   --font-weight-medium: 500;
   --font-weight-bold: 700;
 
-  /* GAP */
+  /* Gap */
 
   --gap-xs: 8px;
   --gap-s: 10px;

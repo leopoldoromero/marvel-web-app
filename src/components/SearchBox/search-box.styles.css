@@ -1,0 +1,26 @@
+.search-box {
+    width: 100%;
+    height: 77px;
+    display: flex;
+    flex-direction: column;
+    padding: 12px var(--spacing-2);
+    gap: var(--gap-m);
+}
+
+.search-box__results {
+    display: flex;
+    height: 14px;
+    font-family: inherit;
+    font-size: var(--font-size-mini);
+    font-weight: var(--font-weight-default);
+    line-height: var(--line-height-mini);
+    text-transform: uppercase;
+    color: var(--bg-dark);
+}
+
+
+@media (min-width: 834px) {
+    .search-box {
+        padding: 12px var(--spacing-6);
+    }    
+}

@@ -276,3 +276,25 @@
   .m-left-10 {
     margin-left: var(--spacing-10);
   }
+
+/* Gap */
+
+.gap-xs {
+  gap: var(--gap-xs);
+}
+
+.gap-s {
+  gap: var(--gap-s);
+}
+
+.gap-m {
+  gap: var(--gap-m);
+}
+
+.gap-l {
+  gap: var(--gap-l);
+}
+
+.gap-xl {
+  gap: var(--gap-xl);
+}
