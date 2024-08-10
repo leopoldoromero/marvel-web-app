@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import './header.styles.css';
-import { HeartIcon, LogoIcon } from '@components/Icons';
+import { HeartIcon } from '@components/Icons';
 import { useFavoritesContext } from '@contexts/FavoritesContext';
 import Logo from '@components/Logo';
 
