@@ -32,11 +32,11 @@ describe('FavoritesContext', () => {
     (CookieHandler.get as jest.Mock).mockReturnValue('');
 
     const TestComponent = () => {
-      const { favorites, addFavorite } = useFavoritesContext();
+      const { favorites, handleFavorites } = useFavoritesContext();
       return (
         <div>
           <div data-testid="favorites">{favorites.join(',')}</div>
-          <button onClick={() => addFavorite(4)}>Add Favorite</button>
+          <button onClick={() => handleFavorites(4)}>Add Favorite</button>
         </div>
       );
     };
@@ -54,15 +54,15 @@ describe('FavoritesContext', () => {
     expect(screen.getByTestId('favorites').textContent).toBe('4');
   });
 
-  it('should not add duplicate favorites', () => {
+  it('should remove favorite if already exist', () => {
     (CookieHandler.get as jest.Mock).mockReturnValue('1,2');
 
     const TestComponent = () => {
-      const { favorites, addFavorite } = useFavoritesContext();
+      const { favorites, handleFavorites } = useFavoritesContext();
       return (
         <div>
           <div data-testid="favorites">{favorites.join(',')}</div>
-          <button onClick={() => addFavorite(2)}>Add Favorite</button>
+          <button onClick={() => handleFavorites(2)}>Add Favorite</button>
         </div>
       );
     };
@@ -77,6 +77,6 @@ describe('FavoritesContext', () => {
       screen.getByText('Add Favorite').click();
     });
 
-    expect(screen.getByTestId('favorites').textContent).toBe('1,2');
+    expect(screen.getByTestId('favorites').textContent).toBe('1');
   });
 });

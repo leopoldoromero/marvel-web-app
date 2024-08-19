@@ -3,6 +3,7 @@ import Image from 'next/image';
 import './character-card.styles.css';
 import { HeartIcon } from '@components/Icons';
 import { useFavoritesContext } from '@contexts/FavoritesContext';
+import Link from 'next/link';
 
 interface Props {
   id: number;
@@ -12,7 +13,7 @@ interface Props {
   isDetailsPage?: boolean;
 }
 const CharacterCard: React.FC<Props> = ({ id, name, imageSrc, description, isDetailsPage }) => {
-  const { favorites, addFavorite } = useFavoritesContext();
+  const { favorites, handleFavorites: addFavorite } = useFavoritesContext();
   const isFavorite = favorites.includes(id);
   const showDescription = isDetailsPage && description;
   return (
@@ -21,15 +22,17 @@ const CharacterCard: React.FC<Props> = ({ id, name, imageSrc, description, isDet
         <div
           className={`character-card__character-photo  ${isDetailsPage ? 'character-card__character-photo--details' : ''}`}
         >
-          <Image
-            src={imageSrc}
-            alt={`${name}-marvel-character`}
-            className='character-photo__image'
-            width={100}
-            height={100}
-            unoptimized={true}
-            loading='lazy'
-          />
+          <Link href={`/characters/${id}`}>
+            <Image
+              src={imageSrc}
+              alt={`${name}-marvel-character`}
+              className='character-photo__image'
+              width={100}
+              height={100}
+              unoptimized={true}
+              loading='lazy'
+            />
+          </Link>
         </div>
         <div
           className={`character-card__character-info ${isDetailsPage && 'character-card__character-info--details'}`}
@@ -41,7 +44,8 @@ const CharacterCard: React.FC<Props> = ({ id, name, imageSrc, description, isDet
               <HeartIcon isSelected={isFavorite} onClick={() => addFavorite(id)} />
             </div>
             {showDescription && (
-              <p className='character-info__description'>{description}</p>          )}
+              <p className='character-info__description'>{description}</p>          
+            )}
           </div>
         </div>
       </div>

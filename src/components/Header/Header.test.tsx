@@ -8,7 +8,7 @@ jest.mock('@contexts/FavoritesContext', () => ({
     }),
   }));
 
-describe('Header Component', () => {
+describe('[[Header Test]]', () => {
   it('should render the Header component correctly', () => {
     render(<Header />)
 

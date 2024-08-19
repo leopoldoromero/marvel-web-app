@@ -40,3 +40,16 @@ next-env.d.ts
 
 # vscode
 .vscode
+
+aws*
+
+Dockerfile-backup
+
+template.yaml
+
+samconfig.toml
+
+.aws-sam
+
+events
+

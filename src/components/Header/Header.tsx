@@ -7,7 +7,7 @@ import Logo from '@components/Logo';
 import Link from 'next/link';
 
 const Header: React.FC = () => {
-  const { favorites, addFavorite } = useFavoritesContext();
+  const { favorites } = useFavoritesContext();
   return (
     <header className='header' data-testid='header_test_id'>
       <div>

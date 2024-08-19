@@ -3,7 +3,7 @@
     height: 77px;
     display: flex;
     flex-direction: column;
-    padding: 12px var(--spacing-2);
+    padding: 12px 0;
     gap: var(--gap-m);
 }
 
@@ -16,11 +16,4 @@
     line-height: var(--line-height-mini);
     text-transform: uppercase;
     color: var(--bg-dark);
-}
-
-
-@media (min-width: 834px) {
-    .search-box {
-        padding: 12px var(--spacing-6);
-    }    
 }

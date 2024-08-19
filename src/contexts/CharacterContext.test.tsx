@@ -42,8 +42,7 @@ describe('CharacterContext', () => {
     jest.clearAllMocks();
   });
 
-  it('should has an empty characters and loading true before geting response', () => {
-    (charactersFinder.execute as jest.Mock).mockResolvedValue([]);
+  it('should initialize with empty characters and loading false', () => {
     const TestComponent = () => {
       const { characters, isLoading } = useCharacterContext();
       return (
@@ -61,7 +60,7 @@ describe('CharacterContext', () => {
     );
 
     expect(screen.getByTestId('characters').textContent).toBe('0');
-    expect(screen.getByTestId('isLoading').textContent).toBe('true');
+    expect(screen.getByTestId('isLoading').textContent).toBe('false');
   });
 
   it('should set characters correctly when the service returns them', async () => {
@@ -84,6 +83,10 @@ describe('CharacterContext', () => {
       </CharacterContextProvider>
     );
 
+    
+    act(() => {
+      screen.getByText('Fetch Characters').click();
+    });
     expect(screen.getByTestId('isLoading').textContent).toBe('true');
 
     await waitFor(() => {
@@ -92,15 +95,16 @@ describe('CharacterContext', () => {
     });
   });
 
-  it('should update searchParam and fetch characters when setSearchParam is called', async () => {
+  it('should call get characters with search param', async () => {
     (charactersFinder.execute as jest.Mock).mockResolvedValue(mockCharacters);
 
     const TestComponent = () => {
-      const { characters, setSearchParam } = useCharacterContext();
+      const { characters, isLoading, getCharacters } = useCharacterContext();
       return (
         <div>
           <div data-testid="characters">{characters.length}</div>
-          <button onClick={() => setSearchParam('abcd')}>Set Search Param</button>
+          <div data-testid="isLoading">{isLoading.toString()}</div>
+          <button onClick={() => getCharacters('abcd')}>Fetch Characters</button>
         </div>
       );
     };
@@ -111,14 +115,12 @@ describe('CharacterContext', () => {
       </CharacterContextProvider>
     );
 
-    expect(charactersFinder.execute as jest.Mock).toHaveBeenNthCalledWith(1, '', undefined, undefined);
-
     act(() => {
-      screen.getByText('Set Search Param').click();
+      screen.getByText('Fetch Characters').click();
     });
   
     await waitFor(() => {
-      expect(charactersFinder.execute as jest.Mock).toHaveBeenNthCalledWith(2, 'abcd', undefined, undefined);
+      expect(charactersFinder.execute as jest.Mock).toHaveBeenCalledWith('abcd', undefined, undefined);
       expect(screen.getByTestId('characters').textContent).toBe('3');
     });
   });

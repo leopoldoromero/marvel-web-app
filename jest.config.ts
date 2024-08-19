@@ -213,6 +213,7 @@ const config: Config = {
     moduleNameMapper: {
     '@components/(.*)$': ['<rootDir>/components/$1'],
     '@contexts/(.*)$': ['<rootDir>/contexts/$1'],
+    '@hooks/(.*)$': ['<rootDir>/hooks/$1'],
     '@styles/(.*)$': ['<rootDir>/styles/$1'],
     '@utils/(.*)$': ['<rootDir>/utils/$1'],
     '@modules/(.*)$': ['<rootDir>/modules/$1'],

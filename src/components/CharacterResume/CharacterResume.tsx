@@ -12,7 +12,7 @@ interface Props {
 }
 
 const CharacterResume: React.FC<Props> = ({ id, name, imageSrc, description }) => {
-  const { favorites, addFavorite } = useFavoritesContext();
+  const { favorites, handleFavorites: addFavorite } = useFavoritesContext();
   const isFavorite = favorites.includes(id);
 
   return (

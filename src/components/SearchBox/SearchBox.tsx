@@ -1,37 +1,29 @@
 'use client'
 import './search-box.styles.css'
 import TextInput from "@components/TextInput";
-import { useEffect, useState } from "react";
-import { useDebounce } from "hooks/use-debounce";
+
 
 interface Props {
-    total: number;
+    value: string;
     setSearchParam: (value: string) => void;
-    initialSearchValue?: string;
+    total: number;
 }
 
-const SearchBox: React.FC<Props> = ({total, setSearchParam, initialSearchValue}) => {
-    const [value, setValue] = useState<string>(initialSearchValue ?? '');
-    const [debouncedSearch] = useDebounce(value);
+const SearchBox: React.FC<Props> = ({total, value, setSearchParam}) => {
 
-    useEffect(() => {
-        setSearchParam(debouncedSearch);
-      }, [setSearchParam, debouncedSearch]);
-  
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchParam(e.target.value)
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-    };
-  
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value || '')
     };
 
     return (
         <form onSubmit={handleSubmit} className="search-box">
             <TextInput 
+                data-testid='search-text-input'
                 placeholder="search character..."
                 value={value}
-                onChange={handleChange}
+                onChange={handleOnChange}
              />
              <span className="search-box__results">{`${total} RESULTS`}</span>
         </form>

@@ -6,20 +6,17 @@ import { createContext, useState, useContext, useEffect } from 'react';
 interface CharacterContextState {
   characters: Character[];
   isLoading: boolean;
-  setSearchParam: (value: string) => void;
   getCharacters: (nameStartsWith?: string, page?: number, perPage?: number) => void;
 }
 
 export const CharacterContext = createContext<CharacterContextState>({
   characters: [],
   isLoading: false,
-  setSearchParam: () => {},
   getCharacters: () => {},
 });
 
 export function CharacterContextProvider({ children }: { children: React.ReactNode }) {
   const [characters, setCharacters] = useState<Character[]>([]);
-  const [searchParam, setSearchParam] = useState('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   function getCharacters(nameStartsWith?: string, page?: number, perPage?: number) {
@@ -30,12 +27,8 @@ export function CharacterContextProvider({ children }: { children: React.ReactNo
       })
   }
 
-  // useEffect(() => {
-  //   getCharacters(searchParam);
-  // }, [searchParam]);
-
   return (
-    <CharacterContext.Provider value={{ characters, isLoading, getCharacters, setSearchParam }}>
+    <CharacterContext.Provider value={{ characters, isLoading, getCharacters }}>
       {children}
     </CharacterContext.Provider>
   );

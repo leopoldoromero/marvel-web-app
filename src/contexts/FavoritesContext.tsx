@@ -1,19 +1,22 @@
 'use client';
+import { characterFinder } from '@modules/di.container';
 import { CookieHandler } from '@utils/cookies-handler';
-import { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useState, useContext, useEffect, useReducer } from 'react';
+
 
 interface FavoritesContextState {
   favorites: number[];
-  addFavorite: (id: number) => void;
+  handleFavorites: (id: number) => void;
 }
 
 export const FavoritesContext = createContext<FavoritesContextState>({
   favorites: [],
-  addFavorite: (): void => {},
+  handleFavorites: (): void => {},
 });
 
 export function FavoritesContextProvider({ children }: { children: React.ReactNode }) {
-  let [favorites, setFavorites] = useState<number[]>([]);
+  const [favorites, setFavorites] = useState<number[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const cookie = CookieHandler.get('favorites');
@@ -22,13 +25,14 @@ export function FavoritesContextProvider({ children }: { children: React.ReactNo
     }
   }, []);
 
-  const addFavorite = (id: number): void => {
-    setFavorites([...new Set([...favorites, id])]);
-    CookieHandler.set('favorites', favorites.join(','));
+  const handleFavorites = (id: number): void => {
+    const updatedFavorites = favorites.includes(id) ? favorites.filter((favId) => favId !== id) : [...favorites, id];
+    setFavorites(updatedFavorites);
+    CookieHandler.set('favorites', updatedFavorites.join(','));
   };
 
   return (
-    <FavoritesContext.Provider value={{ favorites, addFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, handleFavorites }}>
       {children}
     </FavoritesContext.Provider>
   );
