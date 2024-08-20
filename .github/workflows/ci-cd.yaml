@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  docker-build-and-deploye:
+  docker-build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
