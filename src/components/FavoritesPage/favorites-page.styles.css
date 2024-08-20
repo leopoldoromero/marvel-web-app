@@ -1,0 +1,30 @@
+.page-title-wrapper {
+    height: 28px;
+    padding: 0 var(--spacing-2);
+}
+
+.page-title-wrapper__title {
+    font-family: inherit;
+    font-size: var( --font-size-m);
+    font-weight: var(--font-weight-bold);
+    line-height: var( --line-height-m);
+    color: var(--bg-dark);
+    text-transform: uppercase;
+}
+  
+@media (min-width: 834px) {
+    .page-title-wrapper {
+      padding: 0 var(--spacing-6);
+    }
+}
+
+@media (min-width: 900px) {
+    .page-title-wrapper {
+        height: 38px;
+    }
+
+    .page-title-wrapper__title {
+        font-size: var( --font-size-l);
+        line-height: var( --line-height-l);
+    }
+}
