@@ -5,6 +5,7 @@ import { useDebounce } from "@hooks/use-debounce";
 import { Character } from "@modules/character/domain/character";
 import { useEffect, useState } from "react";
 import './page-layout.styles.css'
+import { envHelper } from "app/layout";
 
 interface Props {
     pageTitle?: string;
@@ -28,10 +29,10 @@ const PageLayout: React.FC<Props> = ({ pageTitle, fetchCharacters}) =>  {
     }, [debouncedSearchParam, fetchCharacters]);
 
     if (isLoading) return (<CustomCircularProgress />)
-
+    const {NEXT_PUBLIC_TEST} = envHelper()();
     return (
         <main className='page-layout'>
-            <h3>{process.env.NEXT_PUBLIC_TEST}</h3>
+            <h3>{NEXT_PUBLIC_TEST}</h3>
             {pageTitle && (
                 <div className="page-title-wrapper">
                     <h2 className='page-title-wrapper__title'>{pageTitle}</h2>

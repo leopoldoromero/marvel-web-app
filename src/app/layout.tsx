@@ -14,6 +14,14 @@ export const metadata: Metadata = {
   description: "Application built to show information about Marvel characters",
 };
 
+export function envHelper() {
+  const params = {
+    NEXT_PUBLIC_TEST: process.env.NEXT_PUBLIC_TEST,
+  }
+
+  return () => params;
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
