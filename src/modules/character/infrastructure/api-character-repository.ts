@@ -29,7 +29,7 @@ export class ApiCharacterRepository implements CharacterRepository {
     const timeStamp = new Date().getTime().toString();
     const publicKey = process.env.MARVEL_PUBLIC_KEY;
     const privateKey = process.env.MARVEL_PRIVATE_KEY;
-    console.log('ENVIRONMENT', process.env);
+    console.log('ENVIRONMENT', publicKey, privateKey, process.env.NEXT_PUBLIC_MARVEL_API_URL);
     if (!privateKey || !publicKey) throw Error(`Api keys not provided`);
     const messageToHash = `${timeStamp}${privateKey}${publicKey}`;
     const hash = cryptoJs.MD5(messageToHash);
