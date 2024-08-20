@@ -19,7 +19,7 @@ type ComicDto = {
 }
 
 export class ApiCharacterRepository implements CharacterRepository {
-  private MARVEL_API_URL: string = process.env.NEXT_PUBLIC_MARVEL_API_URL as string;
+  private MARVEL_API_URL: string = process.env.MARVEL_API_URL as string;
 
   private getAuthenticationQueryParams(): {
     ts: string;
@@ -27,8 +27,8 @@ export class ApiCharacterRepository implements CharacterRepository {
     apikey: string;
   } {
     const timeStamp = new Date().getTime().toString();
-    const publicKey = process.env.NEXT_PUBLIC_MARVEL_PUBLIC_KEY;
-    const privateKey = process.env.NEXT_PUBLIC_MARVEL_PRIVATE_KEY;
+    const publicKey = process.env.MARVEL_PUBLIC_KEY;
+    const privateKey = process.env.MARVEL_PRIVATE_KEY;
     console.log('ENVIRONMENT', process.env);
     if (!privateKey || !publicKey) throw Error(`Api keys not provided`);
     const messageToHash = `${timeStamp}${privateKey}${publicKey}`;
