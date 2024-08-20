@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  push-store-image:
+  docker-build-and-deploye:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,5 +26,5 @@ jobs:
 
       - name: 'Build and Push Docker Image'
         run: |
-          docker build . --tag ghcr.io/${{ github.repository_owner }}/store:latest
-          docker push ghcr.io/${{ github.repository_owner }}/store:latest
+          docker build . --tag ghcr.io/${{ github.repository_owner }}/marvel-app:latest
+          docker push ghcr.io/${{ github.repository_owner }}/marvel-app:latest
