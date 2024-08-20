@@ -31,6 +31,7 @@ const PageLayout: React.FC<Props> = ({ pageTitle, fetchCharacters}) =>  {
 
     return (
         <main className='page-layout'>
+            <h3>{process.env.NEXT_PUBLIC_TEST}</h3>
             {pageTitle && (
                 <div className="page-title-wrapper">
                     <h2 className='page-title-wrapper__title'>{pageTitle}</h2>
