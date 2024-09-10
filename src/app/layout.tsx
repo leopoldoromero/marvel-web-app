@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "@styles/flex.css";
+import "@styles/spacing.css";
 import { diContainer } from "@modules/di.container";
+import { FavoritesContextProvider } from "@contexts/FavoritesContext";
+import Header from "@components/Header";
 
 
 export const metadata: Metadata = {
@@ -25,7 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body> 
-        {children}
+        <FavoritesContextProvider>
+          <Header />
+          {children}
+        </FavoritesContextProvider>
       </body>
     </html>
   );
