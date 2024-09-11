@@ -7,9 +7,9 @@ import { ApiCharacterRepository } from '@character/infrastructure/api-character-
 type DependencyKeys = 'characterFinder' | 'charactersFinder' | 'comicsFinder';
 type Dependencies = CharactersFinder | CharacterFinder | ComicsFinder;
 
-const apiBaseUrl = process.env.PUBLIC_MARVEL_API_URL ?? '';
-const publicKey = process.env.PUBLIC_MARVEL_PUBLIC_KEY ?? '';
-const privateKey = process.env.PUBLIC_MARVEL_PRIVATE_KEY ?? '';
+const apiBaseUrl = process.env.MARVEL_API_URL ?? '';
+const publicKey = process.env.MARVEL_PUBLIC_KEY ?? '';
+const privateKey = process.env.MARVEL_PRIVATE_KEY ?? '';
 
 class DIContainer {
     private dependencies: Map<DependencyKeys, Dependencies> | null = null;
