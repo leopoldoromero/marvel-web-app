@@ -40,5 +40,5 @@ jobs:
         run: |
           eval $(ssh-agent -s)
           echo "${{ secrets.DEPLOY_KEY }}" | ssh-add -
-          ssh -t StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "bash ${{ secrets.DEPLOY_FOLDER }}/${{ secrets.DEPLOY_SCRIPT_SH }}"
+          ssh -t ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "bash ${{ secrets.DEPLOY_FOLDER }}/${{ secrets.DEPLOY_SCRIPT_SH }}"
       
