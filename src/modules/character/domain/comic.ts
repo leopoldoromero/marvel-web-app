@@ -1,6 +1,6 @@
 export interface Comic {
   id: number;
   title: string;
-  year: any;
+  year: number;
   image: string;
 }

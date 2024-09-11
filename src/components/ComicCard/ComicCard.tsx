@@ -4,7 +4,7 @@ import './comic-card.styles.css';
 interface Props {
   name: string;
   imageSrc: string;
-  year: string;
+  year: number;
 }
 
 const ComicCard: React.FC<Props> = ({ name, imageSrc, year }) => (
