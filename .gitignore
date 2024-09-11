@@ -35,22 +35,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# env
 .env
-
-# vscode
-.vscode
-
-aws*
-
-Dockerfile-backup
-
-template.yaml
-
-samconfig.toml
-
-.aws-sam
-
-events
-
-deploy.sh

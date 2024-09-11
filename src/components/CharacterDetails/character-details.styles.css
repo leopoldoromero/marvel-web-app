@@ -24,6 +24,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: left;
 }
 
 .character-resume__character-info {
@@ -36,6 +37,7 @@
 
 .character-info__name {
   height: 38px;
+  width: 100%;
   font-family: inherit;
   font-size: var(--font-size-l);
   font-weight: var(--font-weight-bold);
@@ -43,6 +45,8 @@
   color: var(--bg-light);
   text-transform: uppercase;
   overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
 }
 
 .character-info__description {
@@ -104,7 +108,7 @@
 
   .character-info__name {
     height: 47px;
-    width: 272px;
+    /* width: 272px; */
     font-size: var(--font-size-xl);
     line-height: var(--line-height-xl);
   }

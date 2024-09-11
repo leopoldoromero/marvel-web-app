@@ -1,15 +1,32 @@
 'use client'
+import { useEffect, useState } from 'react';
 import './search-box.styles.css'
 import TextInput from "@components/TextInput";
-
+import { useDebounce } from '@hooks/use-debounce';
+import { useRouter } from 'next/navigation';
 
 interface Props {
-    value: string;
-    setSearchParam: (value: string) => void;
+    initialValue: string;
     total: number;
 }
 
-const SearchBox: React.FC<Props> = ({total, value, setSearchParam}) => {
+const SearchBox: React.FC<Props> = ({total, initialValue = ''}) => {
+    const [searchParam, setSearchParam] = useState(initialValue);
+    const [debouncedSearchParam] = useDebounce(searchParam);
+    const router = useRouter()
+
+    useEffect(() => {
+        if (debouncedSearchParam !== initialValue) {
+            console.log('RENDERING', initialValue)
+            const params = new URLSearchParams();
+            if (debouncedSearchParam === '') {
+                params.delete('searchTerm')
+            } else {
+                params.set("searchTerm", debouncedSearchParam);
+            }
+            router.push(`?${params.toString()}`);
+        } 
+    }, [debouncedSearchParam, router, initialValue]);
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchParam(e.target.value)
 
@@ -22,7 +39,7 @@ const SearchBox: React.FC<Props> = ({total, value, setSearchParam}) => {
             <TextInput 
                 data-testid='search-text-input'
                 placeholder="search character..."
-                value={value}
+                value={searchParam}
                 onChange={handleOnChange}
              />
              <span className="search-box__results">{`${total} RESULTS`}</span>

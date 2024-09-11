@@ -2,7 +2,7 @@
 import { HeartIcon } from '@components/Icons';
 import { useFavoritesContext } from '@contexts/FavoritesContext';
 import Image from 'next/image';
-import './character-resume.styles.css';
+import './character-details.styles.css';
 
 interface Props {
   id: number;
@@ -11,7 +11,7 @@ interface Props {
   imageSrc: string;
 }
 
-const CharacterResume: React.FC<Props> = ({ id, name, imageSrc, description }) => {
+const CharacterDetails: React.FC<Props> = ({ id, name, imageSrc, description }) => {
   const { favorites, handleFavorites: addFavorite } = useFavoritesContext();
   const isFavorite = favorites.includes(id);
 
@@ -44,4 +44,4 @@ const CharacterResume: React.FC<Props> = ({ id, name, imageSrc, description }) =
   );
 };
 
-export default CharacterResume;
+export default CharacterDetails;

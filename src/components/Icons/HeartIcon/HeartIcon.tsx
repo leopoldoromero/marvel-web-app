@@ -1,5 +1,3 @@
-import './hearth-icon.styles.css';
-
 type HeartIconSize = 'mini' | 'default';
 interface Props {
   size?: HeartIconSize;
@@ -20,7 +18,7 @@ export const HeartIcon: React.FC<Props> = ({ size, isSelected, className, onClic
     ...(!isSelected && { stroke: '#FFFFFF', strokeWidth: '2' }),
   };
   return (
-    <button className='heart-icon-wrapper' onClick={onClick}>
+    <button className='d-flex border-none background-transparent' onClick={onClick}>
       <svg
         className={className}
         viewBox='0 0 24 24'

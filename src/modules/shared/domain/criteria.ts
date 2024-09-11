@@ -1,6 +1,6 @@
 export class Criteria {
   constructor(
-    readonly nameStartsWith = '',
+    readonly searchTerm = '',
     readonly page?: number,
     readonly perPage?: number,
   ) {}

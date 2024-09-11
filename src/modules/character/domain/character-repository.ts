@@ -4,6 +4,6 @@ import { Comic } from './comic';
 
 export interface CharacterRepository {
   get(id: number): Promise<Character | null>;
-  getAll(criteria: Criteria): Promise<Array<Character>>;
+  getByCriteria(criteria: Criteria): Promise<{items: Array<Character>; count: number}>;
   getCommics(characterId: number): Promise<Array<Comic>>;
 }

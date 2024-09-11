@@ -5,7 +5,7 @@ import { Criteria } from '@shared/domain/criteria';
 export class CharactersFinder {
   constructor(private readonly repository: CharacterRepository) {}
 
-  async execute(nameStartsWith?: string, page?: number, perPage?: number): Promise<Array<Character>> {
-    return this.repository.getAll(new Criteria(nameStartsWith, page, perPage));
+  async execute(nameStartsWith?: string, page?: number, perPage?: number): Promise<{items: Array<Character>; count: number}> {
+    return this.repository.getByCriteria(new Criteria(nameStartsWith, page, perPage));
   }
 }

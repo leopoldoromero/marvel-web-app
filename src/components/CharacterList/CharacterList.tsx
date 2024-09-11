@@ -4,7 +4,7 @@ import CharacterCard from '@components/CharacterCard';
 import './character-list.styles.css';
 
 interface Props {
-  characters?: Array<Character>;
+  characters: Array<Character>;
 }
 
 export const CharacterList: React.FC<Props> = ({characters}) => (

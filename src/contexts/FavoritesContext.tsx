@@ -1,7 +1,6 @@
 'use client';
-import { characterFinder } from '@modules/di.container';
 import { CookieHandler } from '@utils/cookies-handler';
-import { createContext, useState, useContext, useEffect, useReducer } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 
 
 interface FavoritesContextState {
@@ -16,7 +15,6 @@ export const FavoritesContext = createContext<FavoritesContextState>({
 
 export function FavoritesContextProvider({ children }: { children: React.ReactNode }) {
   const [favorites, setFavorites] = useState<number[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const cookie = CookieHandler.get('favorites');
