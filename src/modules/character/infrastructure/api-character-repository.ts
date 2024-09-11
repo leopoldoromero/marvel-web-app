@@ -120,7 +120,6 @@ export class ApiCharacterRepository implements CharacterRepository {
       const url = `${endpoint}?${params.toString()}`;
       const response = await fetch(url).then((response) => response.json());
       const comics: Array<ComicDto> = response?.data?.results;
-
       return comics?.map((comic: ComicDto) => ({
         id: comic?.id,
         title: comic?.title,
