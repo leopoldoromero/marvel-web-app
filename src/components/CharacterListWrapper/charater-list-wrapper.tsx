@@ -1,13 +1,15 @@
 import CharacterList from "@components/CharacterList";
 import { Character } from "@modules/character/domain/character";
-import './page-layout.styles.css'
+import './character-list-wrapper.styles.css'
+import SearchBox from "@components/SearchBox";
 
 interface Props {
+    searchTerm: string;
     characters: Array<Character>;
     pageTitle?: string;
 }
 
-const PageLayout: React.FC<Props> = ({ pageTitle, characters}) =>  {
+const CharacterListWrapper: React.FC<Props> = ({ pageTitle, characters, searchTerm}) =>  {
     return (
         <main className='page-layout'>
             {pageTitle && (
@@ -15,6 +17,10 @@ const PageLayout: React.FC<Props> = ({ pageTitle, characters}) =>  {
                     <h2 className='page-title-wrapper__title'>{pageTitle}</h2>
                 </div>
             )}
+            <SearchBox 
+               initialValue={searchTerm} 
+               total={characters?.length}
+           />
            <div className="p-relative">
             <CharacterList characters={characters} />
            </div>
@@ -22,4 +28,4 @@ const PageLayout: React.FC<Props> = ({ pageTitle, characters}) =>  {
     );
 }
 
-export default PageLayout;
+export default CharacterListWrapper;

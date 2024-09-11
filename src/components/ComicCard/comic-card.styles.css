@@ -1,0 +1,81 @@
+.comic-card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 164px;
+  height: 100%;
+  background-color: var(--bg-light);
+  gap: var(--gap-m)
+}
+
+.comic-card__photo {
+  width: 100%;
+  height: 247.5px;
+}
+
+.comic-card__info {
+  width: 100%;
+  height: 60px;
+  gap: var(--gap-xs);
+  display: flex;
+  flex-direction: column;
+}
+
+.comic-photo__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info__comic-title {
+  height: 38px;
+  font-family: inherit;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  font-weight: var(--font-weight-medium);
+  color: var(--bg-dark);
+  overflow: hidden;
+}
+
+.info__comic-year {
+  height: 14px;
+  font-family: inherit;
+  font-size: var(--font-size-mini);
+  line-height: var(--line-height-mini);
+  font-weight: var(--font-weight-default);
+  color: var(--bg-dark);
+  overflow: hidden;
+}
+
+@media (min-width: 834px) {
+  .comic-card {
+    width: 168.52px;
+  }
+ 
+.comic-card__photo {
+  width: 100%;
+  height: 252.79px;
+}
+
+.comic-card__info {
+  width: 100%;
+  height: 56.52px;
+}
+
+}
+
+@media (min-width: 900px) {
+
+  .comic-card {
+    width: 179.2px;
+  }
+ 
+  .comic-card__photo {
+    height: 268.8px;
+  }
+  
+  .comic-card__info {
+    height: 60px;
+  }
+  
+  }

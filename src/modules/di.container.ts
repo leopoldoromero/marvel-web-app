@@ -7,6 +7,10 @@ import { ApiCharacterRepository } from '@character/infrastructure/api-character-
 type DependencyKeys = 'characterFinder' | 'charactersFinder' | 'comicsFinder';
 type Dependencies = CharactersFinder | CharacterFinder | ComicsFinder;
 
+const apiBaseUrl = process.env.PUBLIC_MARVEL_API_URL ?? '';
+const publicKey = process.env.PUBLIC_MARVEL_PUBLIC_KEY ?? '';
+const privateKey = process.env.PUBLIC_MARVEL_PRIVATE_KEY ?? '';
+
 class DIContainer {
     private dependencies: Map<DependencyKeys, Dependencies> | null = null;
     private static instance: DIContainer;
@@ -20,8 +24,7 @@ class DIContainer {
       return DIContainer.instance;
     }
   
-    public initialize({ apiBaseUrl, publicKey, privateKey }: { apiBaseUrl: string; publicKey: string; privateKey: string }) {
-      console.log('INITIALIZING....', apiBaseUrl)
+    public initialize() {
         if (!this.dependencies) {
         const apiCharacterRepository: CharacterRepository = new ApiCharacterRepository(apiBaseUrl, publicKey, privateKey);
   
@@ -31,23 +34,18 @@ class DIContainer {
           ['comicsFinder', new ComicsFinder(apiCharacterRepository)],
         ]);
       } else {
-        console.error('DIContainer is already initialized.');
         return null;
       }
     }
 
     public getDependency<T>(key: DependencyKeys): T {
-        if (!this.dependencies) {
-          throw new Error('DIContainer has not been initialized.');
-        }
-        return this.dependencies.get(key) as T;
+        this.initialize();
+        return this.dependencies?.get(key) as T;
       }
   
     public getDependencies(): Map<DependencyKeys, Dependencies> {
-      if (!this.dependencies) {
-        throw new Error('DIContainer has not been initialized.');
-      }
-      return this.dependencies;
+        this.initialize();
+        return this.dependencies as Map<DependencyKeys, Dependencies>;
     }
   }
   
