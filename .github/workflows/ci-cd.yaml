@@ -36,11 +36,9 @@ jobs:
           chmod 600 /tmp/deploy_key.pem
           ssh -i /tmp/deploy_key.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.DEPLOY_HOST }} "whoami"
 
-      - name: 'Start SSH Agent and Add Key'
+      - name: 'Deploy to instance'
         run: |
           eval $(ssh-agent -s)
           echo "${{ secrets.DEPLOY_KEY }}" | ssh-add -
+          ssh -t StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "bash ${{ secrets.DEPLOY_FOLDER }}/${{ secrets.DEPLOY_SCRIPT_SH }}"
       
-      # - name: 'Deploy via SSH'
-      #   run: |
-      #     ssh -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "bash ${{ secrets.DEPLOY_FOLDER }}/${{ secrets.DEPLOY_SCRIPT_SH }}"
