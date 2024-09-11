@@ -69,7 +69,7 @@ export class ApiCharacterRepository implements CharacterRepository {
   async getByCriteria(criteria: Criteria): Promise<{items: Array<Character>; count: number}> {
     try {
       const page = criteria?.page ?? 1;
-      const perPage = criteria?.perPage ?? 10; // TODO: This was changed for testing purpouses
+      const perPage = criteria?.perPage ?? 10; 
       const nameStartsWith = criteria?.searchTerm ?? '';
       const endpoint = `${this.apiBaseUrl}/characters`;
       const offset = (page - 1) * perPage;
