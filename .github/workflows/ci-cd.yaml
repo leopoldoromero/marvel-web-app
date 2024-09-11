@@ -23,13 +23,18 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
+      
       - name: 'Build and Push Docker Image'
         run: |
           docker build . \
-            --tag ghcr.io/${{ github.repository_owner }}/marvel-app:latest \
-            --build-arg NEXT_PUBLIC_TEST=NEXT_PUBLIC_TEST_VAR \
-            --build-arg NEXT_PUBLIC_MARVEL_API_URL=${{ secrets.API_URL }} \
-            --build-arg NEXT_PUBLIC_MARVEL_PRIVATE_KEY=${{ secrets.PRIVATE_KEY }} \
-            --build-arg NEXT_PUBLIC_MARVEL_PUBLIC_KEY=${{ secrets.PUBLIC_KEY }}
+            --tag ghcr.io/${{ github.repository_owner }}/marvel-app:latest
           docker push ghcr.io/${{ github.repository_owner }}/marvel-app:latest
+
+      - name: 'Start SSH Agent and Add Key'
+        run: |
+          eval $(ssh-agent -s)
+          echo "${{ secrets.DEPLOY_KEY }}" | ssh-add -
+      
+      - name: 'Deploy via SSH'
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "bash ${{ secrets.DEPLOY_FOLDER }}/${{ secrets.DEPLOY_SCRIPT_SH }}"
