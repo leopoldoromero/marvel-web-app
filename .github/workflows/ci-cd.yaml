@@ -30,6 +30,13 @@ jobs:
             --tag ghcr.io/${{ github.repository_owner }}/marvel-app:latest
           docker push ghcr.io/${{ github.repository_owner }}/marvel-app:latest
 
+      - name: Debug SSH Key
+        run: |
+          echo "${{ secrets.DEPLOY_KEY }}" > /tmp/deploy_key.pem
+          chmod 600 /tmp/deploy_key.pem
+          echo "${{ secrets.DEPLOY_HOST }}, ${{ secrets.DEPLOY_KEY }}"
+          ssh -i /tmp/deploy_key.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.DEPLOY_HOST }} "whoami"
+
       - name: 'Start SSH Agent and Add Key'
         run: |
           eval $(ssh-agent -s)
