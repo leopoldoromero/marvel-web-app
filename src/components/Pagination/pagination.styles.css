@@ -1,0 +1,22 @@
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    gap: 5px;
+}
+
+.pagination__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--bg-light);
+}
+
+.pagination__btn--selected {
+    background-color: var(--light-silver);
+}

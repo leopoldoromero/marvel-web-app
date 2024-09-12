@@ -17,8 +17,7 @@ const SearchBox: React.FC<Props> = ({total, initialValue = ''}) => {
 
     useEffect(() => {
         if (debouncedSearchParam !== initialValue) {
-            console.log('RENDERING', initialValue)
-            const params = new URLSearchParams();
+            const params = new URLSearchParams(window.location.search);
             if (debouncedSearchParam === '') {
                 params.delete('searchTerm')
             } else {
