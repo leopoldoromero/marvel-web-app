@@ -8,6 +8,8 @@ export default async function Favorites({
 }: {
   searchParams: { searchTerm: string };
 }) {
+  const PAGE = 1;
+  const PER_PAGE = 50;
   const cookieStore = cookies();
   const favoritesCookie = cookieStore.get("favorites");
   const favoritesIds: Array<number> = favoritesCookie?.value?.split(",")
@@ -21,7 +23,13 @@ export default async function Favorites({
 
   return (
     <main>
-      <CharacterListWrapper characters={items} searchTerm={nameStartsWith}/>
+      <CharacterListWrapper 
+      characters={items} 
+      searchTerm={nameStartsWith}
+      count={items?.length}
+      initialPage={PAGE}
+      initialLimit={PER_PAGE}
+      />
     </main>
   );
 }
