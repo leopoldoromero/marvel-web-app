@@ -9,7 +9,8 @@ const TextInput: React.FC<Props> = (props) => (
         <input 
         className="text-input-wrapper__input" 
         type="text" 
-        {...props}/>
+        {...props}
+        />
     </div>
 );
 
