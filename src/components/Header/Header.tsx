@@ -10,10 +10,10 @@ const Header: React.FC = () => {
   const { favorites } = useFavoritesContext();
   return (
     <header className='header' data-testid='header_test_id'>
-      <div>
+      <div >
         <Logo />
       </div>
-      <div className='header__favorites'>
+      <div className='header__favorites' >
         <Link href='/favorites' data-testid='favorites_link_test_id'>
           <HeartIcon isSelected />    
         </Link>

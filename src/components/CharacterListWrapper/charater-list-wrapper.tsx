@@ -27,6 +27,7 @@ const CharacterListWrapper: React.FC<Props> = ({ pageTitle, characters, searchTe
             router.push(`?${params.toString()}`, {scroll: true});
         } 
     }
+    const totalPages = count <= initialLimit ? 1 : Math.round(count / initialLimit);
 
     return (
         <main className='page-layout'>
@@ -43,9 +44,9 @@ const CharacterListWrapper: React.FC<Props> = ({ pageTitle, characters, searchTe
             <CharacterList characters={characters} />
            </div>
            {
-            count > 0 && (
+            count > 0 && totalPages > 1 && (
                 <div className="d-flex justify-content-center">
-                    <Pagination currentPage={currentPage} totalPages={Math.round(count / initialLimit)} handlePageChange={handlePageChange}/>
+                    <Pagination currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
                 </div>
             )
            }
