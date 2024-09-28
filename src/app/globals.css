@@ -79,6 +79,9 @@ button,
 textarea,
 select {
   font: inherit;
+  color: var(--bg-dark);
+  -webkit-text-fill-color: var(--bg-dark);
+  line-height: 1.5;
 }
 
 /* Widtht */

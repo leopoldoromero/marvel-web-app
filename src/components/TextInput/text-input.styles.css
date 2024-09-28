@@ -15,7 +15,7 @@
     height: 19px;
     border: 0;
     text-transform: uppercase;
-    padding: var(--spacing-1);
+    padding-left: var(--spacing-1);
     font-family: inherit;
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-default);
