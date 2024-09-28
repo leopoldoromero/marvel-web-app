@@ -1,5 +1,6 @@
 'use client';
 import { CookieHandler } from '@utils/cookies-handler';
+import { useRouter } from 'next/navigation';
 import { createContext, useState, useContext, useEffect } from 'react';
 
 
@@ -15,6 +16,7 @@ export const FavoritesContext = createContext<FavoritesContextState>({
 
 export function FavoritesContextProvider({ children }: { children: React.ReactNode }) {
   const [favorites, setFavorites] = useState<number[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const cookie = CookieHandler.get('favorites');
@@ -27,6 +29,7 @@ export function FavoritesContextProvider({ children }: { children: React.ReactNo
     const updatedFavorites = favorites.includes(id) ? favorites.filter((favId) => favId !== id) : [...favorites, id];
     setFavorites(updatedFavorites);
     CookieHandler.set('favorites', updatedFavorites.join(','));
+    router.refresh();
   };
 
   return (

@@ -11,7 +11,7 @@
 
 .text-input-wrapper__input {
     width: 100%;
-    max-width: 300px; /* TODO: check this later*/
+    max-width: 300px;
     height: 19px;
     border: 0;
     text-transform: uppercase;
@@ -21,4 +21,5 @@
     font-weight: var(--font-weight-default);
     line-height: var(--line-height-s);
     outline: none;
+    color: var(--bg-dark);
 }

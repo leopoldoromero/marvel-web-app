@@ -10,7 +10,7 @@ export default async function Home({
 }) {
   const searchTerm = searchParams?.searchTerm || '';
   const initialPage = Number(searchParams?.page) || 1;
-  const initialLimit = Number(searchParams?.perPage) || 50;
+  const initialLimit = Number(searchParams?.perPage) || 30;
 
   if (!searchParams.page || !searchParams.perPage) {
     const params = new URLSearchParams();
