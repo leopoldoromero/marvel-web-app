@@ -2,13 +2,22 @@ import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import { FavoritesContextProvider, useFavoritesContext } from '@contexts/FavoritesContext';
 import { CookieHandler } from '@utils/cookies-handler';
-
+import { useRouter } from 'next/navigation';
 
 jest.mock('@utils/cookies-handler');
 
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(),
+}));
+
 describe('FavoritesContext', () => {
+  const mockRefresh = jest.fn(); 
   beforeEach(() => {
     jest.clearAllMocks();
+    
+    (useRouter as jest.Mock).mockReturnValue({
+      refresh: mockRefresh,
+    });
   });
 
   it('should initialize favorites from cookies', () => {

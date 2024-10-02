@@ -6,7 +6,8 @@ describe('[[TestInput Test]]', () => {
   it('should render the input correctly with its props', () => {
     const mockPlaceholder = 'Search...'
     const mockValue = 'abc'
-    render(<TextInput placeholder={mockPlaceholder} value={mockValue}/>)
+    const mockOnChange = jest.fn();
+    render(<TextInput placeholder={mockPlaceholder} value={mockValue} onChange={mockOnChange}/>)
 
     const input = screen.getByPlaceholderText(mockPlaceholder) as HTMLInputElement;
 
